@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FaEnvelope, FaGithub, FaMapMarkerAlt, FaPhoneAlt, FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -14,10 +15,9 @@ const navItems = [
 ] as const;
 
 const socialItems = [
-  ["GitHub", "◎"],
-  ["LinkedIn", "in"],
-  ["Behance", "Bē"],
-  ["Instagram", "◎"],
+  ["GitHub", "GH", "https://github.com/WYZEPRINCE"],
+  ["LinkedIn", "in", "https://www.linkedin.com/in/adelaniadelaja"],
+  ["Behance", "Be", "https://www.behance.net/adelaniadelaja"],
 ] as const;
 
 const skillGroups = {
@@ -94,7 +94,7 @@ const projects = [
   {
     title: "HealthPointer WebApp",
     image: "/images/healthpointer.png",
-    url: "https://healthpointer.ai",
+    url: "https://healthpointer.netlify.app",
     type: "UI/UX Design & Development",
     description:
       "A fully functional and responsive smart healthcare webapp with AI-chatbot to check 10 most common illness in Nigeria, appointment booking flow and health resources.",
@@ -121,7 +121,7 @@ const projects = [
     description:
       "A fully functional and responsive waitlist / landing page for a logistics company with the aim of generating and converting visitors.",
     tags: ["Figma", "UI Design", "NextJs", "Typescript"],
-    category: "design",
+    category: ["design", "development"],
     featured: true,
   },
   {
@@ -142,8 +142,8 @@ const projects = [
     url: "https://shinystarschools.com",
     type: "Development",
     description:
-      "A fully functional and responsive waitlist / landing page for a logistics company with the aim of generating and converting visitors.",
-    tags: ["Figma", "UI Design", "NextJs", "Typescript"],
+      "A responsive school website built to present admissions, academics, school values, and parent-facing information clearly.",
+    tags: ["NextJs", "Typescript", "Responsive UI", "School Website"],
     category: "development",
   },
   {
@@ -152,34 +152,109 @@ const projects = [
     url: "https://tjresourcesltd.com",
     type: "Development",
     description:
-      "A fully functional and responsive waitlist / landing page for a logistics company with the aim of generating and converting visitors.",
-    tags: ["Figma", "UI Design", "NextJs", "Typescript"],
+      "A corporate website for a resources company with structured service pages, clear calls to action, and mobile-first layouts.",
+    tags: ["NextJs", "Typescript", "Corporate Website", "Responsive UI"],
     category: "development",
   },
   {
     title: "Vigour Technology Website",
     image: "/images/vigour.png",
-    url: "https://vigourtechnology.com",
+    url: "https://vigourtechnology.org",
     type: "Development",
     description:
-      "A fully functional and responsive waitlist / landing page for a logistics company with the aim of generating and converting visitors.",
-    tags: ["Figma", "UI Design", "NextJs", "Typescript"],
+      "A technology company website focused on services, credibility, and conversion-ready sections across desktop and mobile.",
+    tags: ["NextJs", "Typescript", "Company Website", "Frontend"],
     category: "development",
     featured: true,
   },
 ];
 
-const experienceItems = Array.from({ length: 5 }, () => ({
-  role: "Front-End Development Lead",
-  company: "Vigour Technology",
-  period: "2025 - Present",
-  points: [
-    "Led the development of a design system used across 3 product teams",
-    "Improved company website performance by 40% through code optimization",
-    "Mentored 4 developers and conducted code reviews",
-    "Collaborated with UX team to implement accessible interfaces across all products built by the company",
-  ],
-}));
+const experienceItems = [
+   {
+    role: "CEO & Founder",
+    company: "Delayfree",
+    period: "2025 - Present",
+    type: "Full Time",
+    points: [
+      "Founded and currently lead DelayFree, overseeing business strategy, operations, and product execution.",
+      "Led product development and cross-functional operations, overseeing the design and rollout of customer, partner, rider, and admin experiences.",
+      "Drove business growth through partnership development, go-to-market planning, and operational systems focused on reliable, transparent, and timely deliveries.",
+      "Directed company positioning, process improvement, and expansion planning to build scalable logistics infrastructure for businesses and individuals in Nigeria.",
+    ],
+  },
+  {
+    role: "Front-End Development Lead (Remote)",
+    company: "Vigour Technology, Lagos",
+    period: "2025 - Present",
+    type: "Full-time",
+    points: [
+      "Lead frontend delivery across company websites, dashboards, and client products",
+      "Build responsive interfaces with React, NextJs, TypeScript, and reusable UI patterns",
+      "Collaborate with stakeholders to translate product goals into clean, usable experiences",
+      "Review implementation quality and guide developers through design-to-code handoff",
+    ],
+  },
+  {
+    role: "UI/UX Designer & Web Developer",
+    company: "Tenacious Dialogues, USA",
+    period: "2026",
+    type: "Contract",
+    points: [
+      "Redesigned and rebuilt the company website for a clearer coaching and consulting experience using Figma & Wix",
+      "Improved the visual hierarchy, service presentation, and responsive page flow",
+      "Implemented polished website sections aligned with the brand's communication style",
+      "Delivered the project with close attention to detail, timing, and client feedback",
+    ],
+  },
+  {
+    role: "Project Lead & Developer (Remote)",
+    company: "Fransunisoft, Lagos",
+    period: "2025 - Present",
+    type: "Volunteer",
+    points: [
+      "Designed and developed a responsive brand website for a venture and talent studio",
+      "Created modern page layouts that present startup programs, services, Talent Management Dashboard and credibility clearly",
+      "Balanced UI polish with fast-loading, maintainable frontend implementation",
+      "Supported content structure and interaction details from concept through launch",
+    ],
+  },
+  {
+    role: "Lead Product Designer",
+    company: "3MTTNigeria Lagos",
+    period: "2025",
+    type: "Project",
+    points: [
+      "Spearheaded the design of an AI-powered healthcare webapp screens for symptom checking chatbot, appointment booking, and resources",
+      "Mapped user flows around trust, clarity, and quick access to health information",
+      "Created responsive interface patterns for web app use across mobile and desktop",
+      "Collaborated on product decisions that made complex health actions easier to complete",
+    ],
+  },
+  {
+    role: "Front-End Developer",
+    company: "KodeHauz",
+    period: "2024-2025",
+    type: "Internship",
+    points: [
+      "Led a cross-functional team to create a fully functional and responsive website for Kodecamp, enhancing user engagement.",
+      " Implemented designs with Pixel Perfect precision using Next.js, ensuring a seamless user experience.",
+      "Created responsive interface patterns compatible across mobile and desktop",
+      "Collaborated with designers and backend developers to optimize performance and responsiveness, resulting in a 30% increase in site speed.",
+    ],
+  },
+  {
+    role: "Product Designer",
+    company: "Glesyde",
+    period: "2024",
+    type: "Freelance",
+    points: [
+      "Led a design team for a SaaS startup to successfully revamp a telehealth app for a client, enhancing user engagement and satisfaction.",
+      "Developed a comprehensive design system to ensure consistency and efficiency across the platform. ",
+      "Conducted regular QA/QC sessions with developers, achieving pixel-perfect implementations and reducing design discrepancies.",
+      "Support clients and stakeholders with redesigns, performance improvements, and launch-ready delivery",
+    ],
+  },
+];
 
 const testimonials = [
   {
@@ -189,20 +264,20 @@ const testimonials = [
     location: "United States",
     category: "Design and Development",
     project: "Redesign and rebuild of website",
-    image: "/images/adelani-avatar.png",
+    image: "/images/DrShannon.jpeg",
     quote:
-      "Alex completely transformed our product's user experience. The new interface reduced onboarding time by 60% and our support tickets dropped dramatically. The attention to detail in every micro-interaction was extraordinary — it genuinely felt like working with a top-tier design agency.",
+      "Adelani worked as a UI/UX designer and Web developer for my company and completed an outstanding rebuild of my website www.tenaciousdialogues.com. He was extremely professional and knowledgeable. He executed every detail in a timely manner with excellence. I highly recommend Adelani's services.",
   },
   {
     name: "Oluseyi Ayodele",
     role: "CEO and Founder ",
     company: "Fransunisoft",
     location: "Nigeria",
-    category: "UI/UX Design & Dvelopment",
+    category: "UI/UX Design & Development",
     project: "Responsive brand Website and Talent Management system Dashboard",
-    image: "/images/adelani-avatar.png",
+    image: "/images/CM.jpg",
     quote:
-      "Adelani brought clarity to a messy product flow and turned it into something simple, polished, and easy for our users to trust. The final experience felt premium without losing speed or usability.",
+      "Adelani led a team to build my full responsive and functional brand website in 2 weeks, faster than industry standard. He doubled as UI/UX deigner and web developer, and his attention to details is highly commendable. He is highly recommended ",
   },
   {
     name: "Adeleji Olugbodu",
@@ -211,20 +286,20 @@ const testimonials = [
     location: "Nigeria",
     category: "Development",
     project: "Several Website Creation and overhaul",
-    image: "/images/adelani-avatar.png",
+    image: "/images/adedeji.png",
     quote:
-      "The work was thoughtful from strategy to delivery. Every section was responsive, accessible, and aligned with the brand. Communication was smooth and the implementation quality was excellent.",
+      "Adelani joined Vigour and quickly established himself as the technical backbone of our team. He leads our development efforts with skill and dedication, consistently delivering high-quality work across our products and projects. What impresses me most is not just what he builds, but how he builds it — thoughtfully, efficiently, and always with the bigger picture in mind."
   },
   {
-    name: "Adeleji Olugbodu",
-    role: "Operations Director",
-    company: "Vigour Technology",
+    name: "Orodje (Wisdom) Akpotor",
+    role: "CEO",
+    company: "Glesyde",
     location: "Nigeria",
-    category: "Consulting",
+    category: "UI/UX Design",
     project: "Digital Experience Strategy",
-    image: "/images/adelani-avatar.png",
+    image: "/images/glesyde.jpg",
     quote:
-      "Adelani understood the business goals quickly and translated them into a clean digital experience. The process was collaborative, the execution was sharp, and the final result gave us more confidence presenting our brand online.",
+      "Working with Adelani was a great experience. He collaborated in redesigning a client’s health app project with real attention to detail, understands business goals, high communication skill and speed. The client loved the new design. Highly recommended.",
   },
 ];
 
@@ -239,12 +314,22 @@ function Logo() {
 function SocialLinks() {
   return (
     <div className="socials">
-      {socialItems.map(([label, symbol]) => (
-        <a aria-label={label} href="#" key={label}>
-          {symbol}
+      {socialItems.map(([label, symbol, url]) => (
+        <a aria-label={label} href={url} key={label} rel="noreferrer" target="_blank">
+          {label === "GitHub" ? <FaGithub aria-hidden="true" size={17} /> : symbol}
         </a>
       ))}
     </div>
+  );
+}
+
+function RatingStars() {
+  return (
+    <span aria-label="5 out of 5 stars" className="rating-stars" role="img">
+      {Array.from({ length: 5 }, (_, index) => (
+        <FaStar aria-hidden="true" key={index} />
+      ))}
+    </span>
   );
 }
 
@@ -258,6 +343,8 @@ function Availability() {
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const openMenu = () => setIsOpen(true);
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <>
@@ -281,8 +368,11 @@ function Header() {
             aria-expanded={isOpen}
             aria-label="Open navigation"
             className="menu-toggle"
-            onClick={() => setIsOpen(true)}
-            onPointerDown={() => setIsOpen(true)}
+            onClick={openMenu}
+            onTouchEnd={(event) => {
+              event.preventDefault();
+              openMenu();
+            }}
             type="button"
           >
             <span />
@@ -295,8 +385,11 @@ function Header() {
       <button
         aria-label="Close navigation overlay"
         className={`drawer-backdrop ${isOpen ? "is-open" : ""}`}
-        onClick={() => setIsOpen(false)}
-        onPointerDown={() => setIsOpen(false)}
+        onClick={closeMenu}
+        onTouchEnd={(event) => {
+          event.preventDefault();
+          closeMenu();
+        }}
         type="button"
       />
 
@@ -306,8 +399,11 @@ function Header() {
           <button
             aria-label="Close navigation"
             className="drawer-close"
-            onClick={() => setIsOpen(false)}
-            onPointerDown={() => setIsOpen(false)}
+            onClick={closeMenu}
+            onTouchEnd={(event) => {
+              event.preventDefault();
+              closeMenu();
+            }}
             type="button"
           >
             ×
@@ -315,14 +411,14 @@ function Header() {
         </div>
         <nav aria-label="Mobile navigation" className="drawer-nav">
           {navItems.map(([label, href]) => (
-            <a href={href} key={href} onClick={() => setIsOpen(false)}>
+            <a href={href} key={href} onClick={closeMenu}>
               {label}
             </a>
           ))}
         </nav>
         <div className="drawer-actions">
           <Availability />
-          <a className="button button-primary" href="#contact" onClick={() => setIsOpen(false)}>
+          <a className="button button-primary" href="#contact" onClick={closeMenu}>
             Let&apos;s Talk
           </a>
         </div>
@@ -357,7 +453,7 @@ function Hero() {
         <h1>
           Adelani Adelaja,
           <strong>Front-End Web Developer</strong>
-          <span>& UI/UX Designer</span>
+          <span className="text-white!">& UI/UX Designer</span>
         </h1>
         <p className="hero-description">
           I craft delightful digital experiences that blend beautiful design with clean, performant
@@ -429,7 +525,7 @@ function About() {
           <span> building with precision</span>
         </h2>
         <p>
-          I&apos;m a passionate Front-End Developer and UI/UX Designer with 3+ years of working experience based in Nigeria, dedicated to
+          I&apos;m The CEO & Founder of Delayfree Logistics Marketplace, passionate Front-End Developer and UI/UX Designer with 3+ years of working experience based in Nigeria, dedicated to
           creating digital experiences that are not just visually stunning but genuinely useful and
           accessible to everyone.
         </p>
@@ -448,7 +544,7 @@ function About() {
             <span key={`${item}-${index}`}>◉ {item}</span>
           ))}
         </div>
-        <a className="button button-download" href="/adelani-adelaja-resume.pdf">
+        <a className="button button-download" href="/Adelani_Adelaja_CV.pdf" rel="noreferrer" target="_blank">
           ↓ Download Resume
         </a>
       </div>
@@ -457,7 +553,7 @@ function About() {
 }
 
 function Skills() {
-  const [activeTab, setActiveTab] = useState<SkillTab>("design");
+  const [activeTab, setActiveTab] = useState<SkillTab>("development");
   const activeSkills = skillGroups[activeTab];
 
   return (
@@ -606,7 +702,7 @@ function Experience() {
                   <p>{experience.company}</p>
                 </div>
                 <div>
-                  <span>Full-time</span>
+                  <span>{experience.type}</span>
                   <small>{experience.period}</small>
                 </div>
               </div>
@@ -619,7 +715,7 @@ function Experience() {
           ))}
         </div>
         <div className="education">
-          <h3>Education</h3>
+          <h2>Education</h2>
           <article>
             <b>♧</b>
             <div>
@@ -635,7 +731,7 @@ function Experience() {
           </article>
         </div>
         <div className="education">
-          <h3>Awards, Programs & Fellowships</h3>
+          <h2>Awards, Programs & Fellowships</h2>
           <article>
             <b>♧</b>
             <div>
@@ -722,7 +818,7 @@ function Testimonials() {
           <p>{activeTestimonial.role}</p>
           <p className="review-company">{activeTestimonial.company}</p>
           <p className="review-location">{activeTestimonial.location}</p>
-          <b>*****</b>
+          <RatingStars />
           <span>{activeTestimonial.category}</span>
         </div>
         <div className="review-copy">
@@ -758,7 +854,7 @@ function Testimonials() {
             <span />
             <h3>{testimonial.name}</h3>
             <p>{testimonial.company}</p>
-            <b>*****</b>
+            <RatingStars />
           </button>
         ))}
       </div>
@@ -836,9 +932,9 @@ function Contact() {
             of your vision. Let&apos;s build something great.
           </p>
           <ul className="contact-list">
-            <li>✉ <span>adelaniadelaja@gmail.com</span></li>
-            <li>♧ <span>+2349056126667</span></li>
-            <li>⌖ <span>Abuja, Nigeria</span></li>
+            <li><FaEnvelope aria-hidden="true" /> <span>adelaniadelaja@gmail.com</span></li>
+            <li><FaPhoneAlt aria-hidden="true" /> <span>+2349056126667</span></li>
+            <li><FaMapMarkerAlt aria-hidden="true" /> <span>Abuja, Nigeria</span></li>
           </ul>
           <p>Find me on</p>
           <SocialLinks />
@@ -892,6 +988,8 @@ function Contact() {
               <option disabled value="">Select a topic</option>
               <option>New project</option>
               <option>Collaboration</option>
+              <option>Job role</option>
+              <option>Consultation</option>
             </select>
             {formik.touched.subject && formik.errors.subject ? (
               <span className="field-error" id="subject-error">
