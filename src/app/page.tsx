@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FaEnvelope, FaGithub, FaMapMarkerAlt, FaPhoneAlt, FaStar } from "react-icons/fa";
-import { useState } from "react";
+import { FaEnvelope, FaGithub, FaMapMarkerAlt, FaMoon, FaPaperPlane, FaPhoneAlt, FaStar, FaSun } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -45,6 +45,7 @@ const skillGroups = {
 
 type SkillTab = keyof typeof skillGroups;
 type ProjectTab = "all" | "design" | "development";
+type ThemeMode = "dark" | "light";
 
 type ContactValues = {
   name: string;
@@ -149,7 +150,7 @@ const projects = [
   {
     title: "TjResources Ltd Website",
     image: "/images/tjresources.png",
-    url: "https://tjresourcesltd.com",
+    url: "https://tjresourceltd.com",
     type: "Development",
     description:
       "A corporate website for a resources company with structured service pages, clear calls to action, and mobile-first layouts.",
@@ -159,10 +160,10 @@ const projects = [
   {
     title: "Vigour Technology Website",
     image: "/images/vigour.png",
-    url: "https://vigourtechnology.org",
+    url: "https://vigourtech.org",
     type: "Development",
     description:
-      "A technology company website focused on services, credibility, and conversion-ready sections across desktop and mobile.",
+      "A technology & IT solutions company website focused on services, credibility, IT-consultancy and conversion-ready sections across desktop and mobile.",
     tags: ["NextJs", "Typescript", "Company Website", "Frontend"],
     category: "development",
     featured: true,
@@ -222,7 +223,7 @@ const experienceItems = [
     role: "Lead Product Designer",
     company: "3MTTNigeria Lagos",
     period: "2025",
-    type: "Project",
+    type: "Internship",
     points: [
       "Spearheaded the design of an AI-powered healthcare webapp screens for symptom checking chatbot, appointment booking, and resources",
       "Mapped user flows around trust, clarity, and quick access to health information",
@@ -232,7 +233,7 @@ const experienceItems = [
   },
   {
     role: "Front-End Developer",
-    company: "KodeHauz",
+    company: "KodeHauz, AkwaIbom",
     period: "2024-2025",
     type: "Internship",
     points: [
@@ -244,7 +245,7 @@ const experienceItems = [
   },
   {
     role: "Product Designer",
-    company: "Glesyde",
+    company: "Glesyde, Lagos",
     period: "2024",
     type: "Freelance",
     points: [
@@ -341,7 +342,34 @@ function Availability() {
   );
 }
 
-function Header() {
+function ThemeToggle({
+  theme,
+  onToggleTheme,
+}: {
+  theme: ThemeMode;
+  onToggleTheme: () => void;
+}) {
+  const isLight = theme === "light";
+
+  return (
+    <button
+      aria-label={`Switch to ${isLight ? "dark" : "light"} mode`}
+      className="theme-toggle"
+      onClick={onToggleTheme}
+      type="button"
+    >
+      {isLight ? <FaMoon aria-hidden="true" /> : <FaSun aria-hidden="true" />}
+    </button>
+  );
+}
+
+function Header({
+  theme,
+  onToggleTheme,
+}: {
+  theme: ThemeMode;
+  onToggleTheme: () => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const openMenu = () => setIsOpen(true);
   const closeMenu = () => setIsOpen(false);
@@ -360,6 +388,7 @@ function Header() {
           </nav>
           <div className="header-actions">
             <Availability />
+            <ThemeToggle onToggleTheme={onToggleTheme} theme={theme} />
             <a className="button button-primary" href="#contact">
               Let&apos;s Talk
             </a>
@@ -418,12 +447,43 @@ function Header() {
         </nav>
         <div className="drawer-actions">
           <Availability />
+          <ThemeToggle onToggleTheme={onToggleTheme} theme={theme} />
           <a className="button button-primary" href="#contact" onClick={closeMenu}>
             Let&apos;s Talk
           </a>
         </div>
       </div>
     </>
+  );
+}
+
+function RevealSection({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className={`section-reveal ${isVisible ? "is-visible" : ""}`} ref={ref}>
+      {children}
+    </div>
   );
 }
 
@@ -525,8 +585,8 @@ function About() {
           <span> building with precision</span>
         </h2>
         <p>
-          I&apos;m The CEO & Founder of Delayfree Logistics Marketplace, passionate Front-End Developer and UI/UX Designer with 3+ years of working experience based in Nigeria, dedicated to
-          creating digital experiences that are not just visually stunning but genuinely useful and
+          I&apos;m the CEO & Founder of Delayfree Logistics Marketplace - a logistics-tech platform that allows customers, online vendors, and SMEs to compare multiple delivery companies base on proximity, price and rating. Thereby giving hyper-local delivery companies structured visibility and operational efficiency. Passionate Front-End Developer and UI/UX Designer with 3+ years of working experience based in Nigeria, dedicated to
+          creating digital experiences that are not just visually stunning but genuinely useful and 
           accessible to everyone.
         </p>
         <p>
@@ -1022,7 +1082,13 @@ function Contact() {
             </p>
           ) : null}
           <button className="button button-primary full" disabled={formik.isSubmitting} type="submit">
-            Send Message　♧
+            {formik.isSubmitting ? (
+              "Sending"
+            ) : (
+              <>
+                Send Message <FaPaperPlane aria-hidden="true" />
+              </>
+            )}
           </button>
         </form>
       </div>
@@ -1031,24 +1097,62 @@ function Contact() {
 }
 
 export default function Home() {
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    if (typeof window === "undefined") return "dark";
+
+    const savedTheme = window.localStorage.getItem("adelani-theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      return savedTheme;
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+
+    return "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("adelani-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+
   return (
     <>
-      <Header />
+      <Header onToggleTheme={toggleTheme} theme={theme} />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Testimonials />
-        <Contact />
+        <RevealSection>
+          <Hero />
+        </RevealSection>
+        <RevealSection>
+          <About />
+        </RevealSection>
+        <RevealSection>
+          <Skills />
+        </RevealSection>
+        <RevealSection>
+          <Projects />
+        </RevealSection>
+        <RevealSection>
+          <Experience />
+        </RevealSection>
+        <RevealSection>
+          <Testimonials />
+        </RevealSection>
+        <RevealSection>
+          <Contact />
+        </RevealSection>
       </main>
+      <RevealSection>
       <footer>
         <div className="shell footer-inner">
           <p>© 2026 <span>&lt;ADEL/&gt;</span> · All rights reserved</p>
           <p>Design & Built with　<b>♥</b>　By Adelani</p>
         </div>
       </footer>
+      </RevealSection>
     </>
   );
 }
