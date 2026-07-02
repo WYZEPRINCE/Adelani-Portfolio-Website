@@ -393,6 +393,9 @@ function Header({
               Let&apos;s Talk
             </a>
           </div>
+          <div className="mobile-header-actions">
+            <ThemeToggle onToggleTheme={onToggleTheme} theme={theme} />
+          </div>
           <button
             aria-expanded={isOpen}
             aria-label="Open navigation"
@@ -447,7 +450,6 @@ function Header({
         </nav>
         <div className="drawer-actions">
           <Availability />
-          <ThemeToggle onToggleTheme={onToggleTheme} theme={theme} />
           <a className="button button-primary" href="#contact" onClick={closeMenu}>
             Let&apos;s Talk
           </a>
@@ -513,7 +515,7 @@ function Hero() {
         <h1>
           Adelani Adelaja,
           <strong>Front-End Web Developer</strong>
-          <span className="text-white!">& UI/UX Designer</span>
+          <span className="hero-role">& UI/UX Designer</span>
         </h1>
         <p className="hero-description">
           I craft delightful digital experiences that blend beautiful design with clean, performant

@@ -12,13 +12,26 @@ const merriweather = Merriweather({
   subsets: ["latin"],
 });
 
+
+
+
+
 export const metadata: Metadata = {
-  title: "Adelani Adelaja Portfolio Website",
-  description: "Human Centered designer and developer with business background, creating beautiful digital experience ",
+   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://adelaniadelaja.com"),
+  title: "Adelani Adelaja | Front-End Developer & UI/UX Designer",
+  description: "Front-end developer and UI/UX designer building responsive websites, product interfaces, and human-centered digital experiences with React, Next.js, and Figma.",
   icons: {
     icon: "/images/adelLogo3.png",
     shortcut: "/images/adelLogo3.png",
     apple: "/images/adelLogo3.png",
+  },
+
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
